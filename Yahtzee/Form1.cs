@@ -21,6 +21,8 @@ namespace Yahtzee
         Image[] diceImages;
         int counter;
         bool onePair, twoPair, threeOfKind, fourOfKind, yahtzee, smallStraight, highStraight, fullHouse;
+        bool player1;
+        bool player2;
 
         #endregion
 
@@ -31,6 +33,9 @@ namespace Yahtzee
             #region Initialization
 
             InitializeComponent();
+
+            player1 = true;
+            player2 = false;
 
             diceRoll = new int[5] { 0, 0, 0, 0, 0 };
             diceResults = new int[] { 0, 0, 0, 0, 0, 0 };
@@ -48,6 +53,26 @@ namespace Yahtzee
 
         }
 
+
+            #region Add the dice score to the list
+
+        private void AddIntoCheckBox()
+        {
+            if (player1 == true)
+            {
+                if(label1.Text == "One Pair!")
+                {
+                    
+                }
+            }
+            else if (player2 == true)
+            {
+
+            }
+            
+        }
+
+        #endregion
 
             #region RollDice method
         private void RollDice()
@@ -211,7 +236,36 @@ namespace Yahtzee
         #endregion
 
 
-            #region Update Label method which updates label text to what combinations are scored
+            #region Reset Method
+        private void Reset()
+        {
+            pictureBox1.Image = null;
+            pictureBox2.Image = null;
+            pictureBox3.Image = null;
+            pictureBox4.Image = null;
+            pictureBox5.Image = null;
+            pictureBox6.Image = null;
+            pictureBox7.Image = null;
+            pictureBox8.Image = null;
+            pictureBox9.Image = null;
+            pictureBox10.Image = null;
+
+            for (int i = 0; i < diceResults.Length; i++)
+            {
+                diceResults[i] = 0;
+            }
+            for (int i = 0; i < diceRoll.Length; i++)
+            {
+                diceRoll[i] = 0;
+            }
+            counter = 0;
+            scoredLabel.Text = null;
+        }
+        #endregion
+
+
+
+        #region Update Label method which updates label text to what combinations are scored
         private void UpdateLabel()
         {
             scoredLabel.Text = "lol";
@@ -256,34 +310,12 @@ namespace Yahtzee
 
         }
 
-            #region Button that resets the dice and relevent data
+           
         private void resetBtn_Click(object sender, EventArgs e)
         {
-            pictureBox1.Image = null;
-            pictureBox2.Image = null;
-            pictureBox3.Image = null;
-            pictureBox4.Image = null;
-            pictureBox5.Image = null;
-            pictureBox6.Image = null;
-            pictureBox7.Image = null;
-            pictureBox8.Image = null;
-            pictureBox9.Image = null;
-            pictureBox10.Image = null;
-
-            for(int i = 0; i < diceResults.Length; i++)
-            {
-                diceResults[i] = 0;
-            }
-            for(int i = 0; i < diceRoll.Length; i++)
-            {
-                diceRoll[i] = 0;
-            }
-            counter = 0;
-            scoredLabel.Text = null;
-
+            Reset();
         }
-        #endregion
-
+    
 
             #region Logic for swapping the 'saved' dice to 'rollable' dice.
         private void pictureBox6_Click(object sender, EventArgs e)
@@ -322,6 +354,8 @@ namespace Yahtzee
             }
         }
 
+
+
         private void pictureBox9_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < diceImages.Length; i++)
@@ -345,10 +379,14 @@ namespace Yahtzee
                 }
             }
         }
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
-
-            #region Logic for swapping the dicepictures from 'rollable' to 'saved'
+        #region Logic for swapping the dicepictures from 'rollable' to 'saved'
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < diceImages.Length; i++)
@@ -410,6 +448,25 @@ namespace Yahtzee
         }
         #endregion
 
+        private void label1_Click(object sender, EventArgs e)
+        {
 
+        }
+            // next player button
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(player1 == true)
+            {
+                player1 = false;
+                player2 = true;
+                Reset();
+            }
+            else
+            {
+                player1 = true;
+                player2 = false;
+                Reset();
+            }
+        }
     }
 }
