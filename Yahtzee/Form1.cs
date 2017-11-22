@@ -214,26 +214,24 @@ namespace Yahtzee
             #region Update Label method which updates label text to what combinations are scored
         private void UpdateLabel()
         {
+            scoredLabel.Text = "lol";
             if (onePair == true)
-                scoredLabel.Text += "One Pair! ";
+                scoredLabel.Text = "One Pair! ";
             if (twoPair == true)
-                scoredLabel.Text += "Two Pair! ";
+                scoredLabel.Text = "Two Pair! ";
             if (threeOfKind == true)
-                scoredLabel.Text += "Three of a kind! ";
+                scoredLabel.Text = "Three of a kind! ";
             if (fourOfKind == true)
-                scoredLabel.Text += "Four of a kind! ";
+                scoredLabel.Text = "Four of a kind! ";
             if (yahtzee == true)
-                scoredLabel.Text += "YAHTZEE!!! ";
+                scoredLabel.Text = "YAHTZEE!!! ";
             if (smallStraight == true)
-                scoredLabel.Text += "Small straight! ";
+                scoredLabel.Text = "Small straight! ";
             if (highStraight == true)
-                scoredLabel.Text += "High straight! ";
+                scoredLabel.Text = "High straight! ";
             if (fullHouse == true)
-                scoredLabel.Text += "Full house! ";
-            else
-            {
-                scoredLabel.Text = "NOTHING MAN!";
-            }
+                scoredLabel.Text = "Full house! ";
+            
         }
 
 
