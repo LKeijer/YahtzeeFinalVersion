@@ -23,6 +23,7 @@ namespace Yahtzee
         bool onePair, twoPair, threeOfKind, fourOfKind, yahtzee, smallStraight, highStraight, fullHouse;
         bool player1;
         bool player2;
+        
 
         #endregion
 
@@ -49,30 +50,93 @@ namespace Yahtzee
             diceImages[6] = Properties.Resources.dice6;
             diceImages[7] = Properties.Resources.rollDice;
             counter = 0;
+         /*   List<string> checkedListP1 = new List<string>();
+            List<string> checkedListP2 = new List<string>();
+            checkedListP1.Add(checkedListBox1.Items.ToString());
+            checkedListP2.Add(checkedListBox2.Items.ToString()); */
             #endregion
 
         }
-
-
-            #region Add the dice score to the list
-
-        private void AddIntoCheckBox()
+        #region CheckingAll method that checks all the scored dice rolls into the checkedListBox of the corresponding player
+        private void CheckingAll()
         {
-            if (player1 == true)
-            {
-                if(label1.Text == "One Pair!")
+           // checkedListBox1.SetItemChecked(0, true);
+
+            if(player1 == true)
+            { //bool onePair, twoPair, threeOfKind, fourOfKind, yahtzee, smallStraight, highStraight, fullHouse;
+                if(onePair == true)
                 {
-                    
+                    checkedListBox1.SetItemChecked(0, true);
+                }
+                if (twoPair == true)
+                {
+                    checkedListBox1.SetItemChecked(1, true);
+                }
+                if(threeOfKind == true)
+                {
+                    checkedListBox1.SetItemChecked(2, true);
+                }
+                if(fourOfKind == true)
+                {
+                    checkedListBox1.SetItemChecked(6, true);
+                }
+                if(yahtzee == true)
+                {
+                    checkedListBox1.SetItemChecked(7, true);
+                }
+                if(smallStraight == true)
+                {
+                    checkedListBox1.SetItemChecked(4, true);
+                }
+                if(highStraight == true)
+                {
+                    checkedListBox1.SetItemChecked(5, true);
+                }
+                if(fullHouse == true)
+                {
+                    checkedListBox1.SetItemChecked(3, true);
                 }
             }
-            else if (player2 == true)
+            else if(player2 == true)
             {
-
+                if (onePair == true)
+                {
+                    checkedListBox2.SetItemChecked(0, true);
+                }
+                if (twoPair == true)
+                {
+                    checkedListBox2.SetItemChecked(1, true);
+                }
+                if (threeOfKind == true)
+                {
+                    checkedListBox2.SetItemChecked(2, true);
+                }
+                if (fourOfKind == true)
+                {
+                    checkedListBox2.SetItemChecked(6, true);
+                }
+                if (yahtzee == true)
+                {
+                    checkedListBox2.SetItemChecked(7, true);
+                }
+                if (smallStraight == true)
+                {
+                    checkedListBox2.SetItemChecked(4, true);
+                }
+                if (highStraight == true)
+                {
+                    checkedListBox2.SetItemChecked(5, true);
+                }
+                if (fullHouse == true)
+                {
+                    checkedListBox2.SetItemChecked(3, true);
+                }
             }
-            
-        }
 
+        }
         #endregion
+
+
 
             #region RollDice method
         private void RollDice()
@@ -313,7 +377,7 @@ namespace Yahtzee
            
         private void resetBtn_Click(object sender, EventArgs e)
         {
-            Reset();
+            CheckingAll();
         }
     
 
@@ -380,10 +444,7 @@ namespace Yahtzee
             }
         }
 
-        private void mainForm_Load(object sender, EventArgs e)
-        {
 
-        }
         #endregion
 
         #region Logic for swapping the dicepictures from 'rollable' to 'saved'
@@ -459,6 +520,8 @@ namespace Yahtzee
             {
                 player1 = false;
                 player2 = true;
+                CheckingAll();
+                UpdatePlayer();
                 Reset();
             }
             else
@@ -468,5 +531,42 @@ namespace Yahtzee
                 Reset();
             }
         }
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+
+            if (e.Index == 0) e.NewValue = e.CurrentValue;
+            if (e.Index == 1) e.NewValue = e.CurrentValue;
+            if (e.Index == 2) e.NewValue = e.CurrentValue;
+            if (e.Index == 3) e.NewValue = e.CurrentValue;
+            if (e.Index == 4) e.NewValue = e.CurrentValue;
+            if (e.Index == 5) e.NewValue = e.CurrentValue;
+            if (e.Index == 6) e.NewValue = e.CurrentValue;
+            if (e.Index == 7) e.NewValue = e.CurrentValue;
+
+
+        }
+        private void checkedListBox2_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+
+            if (e.Index == 0) e.NewValue = e.CurrentValue;
+            if (e.Index == 1) e.NewValue = e.CurrentValue;
+            if (e.Index == 2) e.NewValue = e.CurrentValue;
+            if (e.Index == 3) e.NewValue = e.CurrentValue;
+            if (e.Index == 4) e.NewValue = e.CurrentValue;
+            if (e.Index == 5) e.NewValue = e.CurrentValue;
+            if (e.Index == 6) e.NewValue = e.CurrentValue;
+            if (e.Index == 7) e.NewValue = e.CurrentValue;
+
+        }
+
+        private void UpdatePlayer()
+        {
+            if (player1 == true)
+                currentPlayerLbl.Text = "Current Player: 2";
+            if (player2 == true)
+                currentPlayerLbl.Text = "Current Player: 1";
+        }
+
     }
+
 }

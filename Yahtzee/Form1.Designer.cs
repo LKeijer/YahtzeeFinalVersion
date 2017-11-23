@@ -46,6 +46,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.currentPlayerLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -235,11 +236,13 @@
             "Full house.",
             "Low Straight.",
             "High Straight.",
+            "Four of a kind.",
             "YAHTZEE."});
             this.checkedListBox1.Location = new System.Drawing.Point(13, 30);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(142, 123);
+            this.checkedListBox1.Size = new System.Drawing.Size(142, 140);
             this.checkedListBox1.TabIndex = 16;
+            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             // 
             // checkedListBox2
             // 
@@ -253,11 +256,22 @@
             "Full house.",
             "Low Straight.",
             "High Straight.",
+            "Four of a kind.",
             "YAHTZEE."});
             this.checkedListBox2.Location = new System.Drawing.Point(640, 29);
             this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(142, 123);
+            this.checkedListBox2.Size = new System.Drawing.Size(142, 140);
             this.checkedListBox2.TabIndex = 17;
+            this.checkedListBox2.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox2_ItemCheck);
+            // 
+            // currentPlayerLbl
+            // 
+            this.currentPlayerLbl.AutoSize = true;
+            this.currentPlayerLbl.Location = new System.Drawing.Point(15, 217);
+            this.currentPlayerLbl.Name = "currentPlayerLbl";
+            this.currentPlayerLbl.Size = new System.Drawing.Size(79, 13);
+            this.currentPlayerLbl.TabIndex = 18;
+            this.currentPlayerLbl.Text = "Current Player: ";
             // 
             // mainForm
             // 
@@ -265,6 +279,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(817, 461);
+            this.Controls.Add(this.currentPlayerLbl);
             this.Controls.Add(this.checkedListBox2);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.button1);
@@ -287,7 +302,7 @@
             this.MaximizeBox = false;
             this.Name = "mainForm";
             this.Text = "Yahtzee";
-            this.Load += new System.EventHandler(this.mainForm_Load);
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -323,6 +338,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.Label currentPlayerLbl;
     }
 }
 
