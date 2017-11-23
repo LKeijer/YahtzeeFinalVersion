@@ -34,31 +34,18 @@ namespace Yahtzee
             #region Initialization
 
             InitializeComponent();
-
             player1 = true;
             player2 = false;
-
             diceRoll = new int[5] { 0, 0, 0, 0, 0 };
             diceResults = new int[] { 0, 0, 0, 0, 0, 0 };
             diceImages = new Image[8];
-            diceImages[0] = Properties.Resources.dice1_6;
-            diceImages[1] = Properties.Resources.dice1;
-            diceImages[2] = Properties.Resources.dice2;
-            diceImages[3] = Properties.Resources.dice3;
-            diceImages[4] = Properties.Resources.dice4;
-            diceImages[5] = Properties.Resources.dice5;
-            diceImages[6] = Properties.Resources.dice6;
-            diceImages[7] = Properties.Resources.rollDice;
             counter = 0;
-         /*   List<string> checkedListP1 = new List<string>();
-            List<string> checkedListP2 = new List<string>();
-            checkedListP1.Add(checkedListBox1.Items.ToString());
-            checkedListP2.Add(checkedListBox2.Items.ToString()); */
+            AddImages();
             #endregion
 
         }
-        #region CheckingAll method that checks all the scored dice rolls into the checkedListBox of the corresponding player
-        private void CheckingAll()
+            #region CheckingCombinations method that checks all the scored dice rolls into the checkedListBox of the corresponding player
+        private void CheckingCombinations()
         {
            // checkedListBox1.SetItemChecked(0, true);
 
@@ -136,7 +123,19 @@ namespace Yahtzee
         }
         #endregion
 
-
+            #region AddImages method that adds all the images to the diceImages[]
+        private void AddImages()
+        {
+            diceImages[0] = Properties.Resources.dice1_6;
+            diceImages[1] = Properties.Resources.dice1;
+            diceImages[2] = Properties.Resources.dice2;
+            diceImages[3] = Properties.Resources.dice3;
+            diceImages[4] = Properties.Resources.dice4;
+            diceImages[5] = Properties.Resources.dice5;
+            diceImages[6] = Properties.Resources.dice6;
+            diceImages[7] = Properties.Resources.rollDice;
+        }
+#endregion
 
             #region RollDice method
         private void RollDice()
@@ -161,7 +160,6 @@ namespace Yahtzee
 
         }
         #endregion
-
 
             #region Insert results method which inserts the 'saved' dice into the diceResults array
         private void InsertResults()
@@ -249,7 +247,6 @@ namespace Yahtzee
         }
         #endregion
 
-
             #region Check results method
 
         private void CheckResults()
@@ -299,7 +296,6 @@ namespace Yahtzee
 
         #endregion
 
-
             #region Reset Method
         private void Reset()
         {
@@ -327,9 +323,7 @@ namespace Yahtzee
         }
         #endregion
 
-
-
-        #region Update Label method which updates label text to what combinations are scored
+            #region Update Label method which updates label text to what combinations are scored
         private void UpdateLabel()
         {
             scoredLabel.Text = "lol";
@@ -355,31 +349,47 @@ namespace Yahtzee
 
             #endregion
 
-
-            //The button that rolls the dice
-        private void rollDiceBtn_Click(object sender, EventArgs e)
+        private void UpdatePlayer()
         {
-            counter++;
-            if (counter < 4)
+            if(currentPlayerLbl.Text == "Current Player: 1")
             {
-                RollDice();
+                currentPlayerLbl.Text = "Current Player: 2";
             }
-            else
+            if(currentPlayerLbl.Text == "Current Player: 2")
             {
-                MessageBox.Show("You can only roll 3 times");
-                InsertResults();
-                CheckResults();
-                UpdateLabel();
+                currentPlayerLbl.Text = "Current Player: 1";
             }
-
         }
 
-           
-        private void resetBtn_Click(object sender, EventArgs e)
+            #region Code that prevents the checked list boxes from being checked by user
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            CheckingAll();
+
+            if (e.Index == 0) e.NewValue = e.CurrentValue;
+            if (e.Index == 1) e.NewValue = e.CurrentValue;
+            if (e.Index == 2) e.NewValue = e.CurrentValue;
+            if (e.Index == 3) e.NewValue = e.CurrentValue;
+            if (e.Index == 4) e.NewValue = e.CurrentValue;
+            if (e.Index == 5) e.NewValue = e.CurrentValue;
+            if (e.Index == 6) e.NewValue = e.CurrentValue;
+            if (e.Index == 7) e.NewValue = e.CurrentValue;
+
+
         }
-    
+        private void checkedListBox2_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+
+            if (e.Index == 0) e.NewValue = e.CurrentValue;
+            if (e.Index == 1) e.NewValue = e.CurrentValue;
+            if (e.Index == 2) e.NewValue = e.CurrentValue;
+            if (e.Index == 3) e.NewValue = e.CurrentValue;
+            if (e.Index == 4) e.NewValue = e.CurrentValue;
+            if (e.Index == 5) e.NewValue = e.CurrentValue;
+            if (e.Index == 6) e.NewValue = e.CurrentValue;
+            if (e.Index == 7) e.NewValue = e.CurrentValue;
+
+        }
+        #endregion
 
             #region Logic for swapping the 'saved' dice to 'rollable' dice.
         private void pictureBox6_Click(object sender, EventArgs e)
@@ -447,7 +457,7 @@ namespace Yahtzee
 
         #endregion
 
-        #region Logic for swapping the dicepictures from 'rollable' to 'saved'
+            #region Logic for swapping the dicepictures from 'rollable' to 'saved'
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < diceImages.Length; i++)
@@ -509,63 +519,47 @@ namespace Yahtzee
         }
         #endregion
 
-        private void label1_Click(object sender, EventArgs e)
+            //The button that rolls the dice
+        private void rollDiceBtn_Click(object sender, EventArgs e)
         {
-
-        }
-            // next player button
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if(player1 == true)
+            counter++;
+            if (counter < 4)
             {
-                player1 = false;
-                player2 = true;
-                CheckingAll();
-                UpdatePlayer();
-                Reset();
+                RollDice();
             }
             else
             {
-                player1 = true;
-                player2 = false;
-                Reset();
+                rollDiceBtn.Hide();
+                nextPlayerBtn.Show();
+                UpdateLabel();
             }
         }
-        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+
+           
+
+
+            // next player button
+        private void nextPlayerBtn_Click(object sender, EventArgs e)
         {
+            CheckingCombinations();
 
-            if (e.Index == 0) e.NewValue = e.CurrentValue;
-            if (e.Index == 1) e.NewValue = e.CurrentValue;
-            if (e.Index == 2) e.NewValue = e.CurrentValue;
-            if (e.Index == 3) e.NewValue = e.CurrentValue;
-            if (e.Index == 4) e.NewValue = e.CurrentValue;
-            if (e.Index == 5) e.NewValue = e.CurrentValue;
-            if (e.Index == 6) e.NewValue = e.CurrentValue;
-            if (e.Index == 7) e.NewValue = e.CurrentValue;
+            if(player1 == true)
+            {
+                player2 = true;
+                player1 = true;
+            }
+            if(player2 == true)
+            {
+                player2 = false;
+                player1 = true;
+            }
 
-
-        }
-        private void checkedListBox2_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-
-            if (e.Index == 0) e.NewValue = e.CurrentValue;
-            if (e.Index == 1) e.NewValue = e.CurrentValue;
-            if (e.Index == 2) e.NewValue = e.CurrentValue;
-            if (e.Index == 3) e.NewValue = e.CurrentValue;
-            if (e.Index == 4) e.NewValue = e.CurrentValue;
-            if (e.Index == 5) e.NewValue = e.CurrentValue;
-            if (e.Index == 6) e.NewValue = e.CurrentValue;
-            if (e.Index == 7) e.NewValue = e.CurrentValue;
-
+            nextPlayerBtn.Hide();
+            rollDiceBtn.Show();
+            UpdatePlayer();
         }
 
-        private void UpdatePlayer()
-        {
-            if (player1 == true)
-                currentPlayerLbl.Text = "Current Player: 2";
-            if (player2 == true)
-                currentPlayerLbl.Text = "Current Player: 1";
-        }
+
 
     }
 

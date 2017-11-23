@@ -39,11 +39,10 @@
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.rollDiceBtn = new System.Windows.Forms.Button();
-            this.resetBtn = new System.Windows.Forms.Button();
             this.scoredLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.nextPlayerBtn = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.currentPlayerLbl = new System.Windows.Forms.Label();
@@ -103,7 +102,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(531, 13);
+            this.pictureBox5.Location = new System.Drawing.Point(525, 13);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(75, 75);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -173,18 +172,6 @@
             this.rollDiceBtn.UseVisualStyleBackColor = false;
             this.rollDiceBtn.Click += new System.EventHandler(this.rollDiceBtn_Click);
             // 
-            // resetBtn
-            // 
-            this.resetBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.resetBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetBtn.Location = new System.Drawing.Point(525, 156);
-            this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(75, 75);
-            this.resetBtn.TabIndex = 11;
-            this.resetBtn.Text = "TIME TO RESET";
-            this.resetBtn.UseVisualStyleBackColor = false;
-            this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
-            // 
             // scoredLabel
             // 
             this.scoredLabel.AutoSize = true;
@@ -196,12 +183,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(637, 13);
+            this.label1.Location = new System.Drawing.Point(641, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 13;
             this.label1.Text = "Player 2";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -212,17 +198,18 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Player 1";
             // 
-            // button1
+            // nextPlayerBtn
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(363, 156);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 75);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Next Player";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.nextPlayerBtn.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.nextPlayerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextPlayerBtn.Location = new System.Drawing.Point(531, 155);
+            this.nextPlayerBtn.Name = "nextPlayerBtn";
+            this.nextPlayerBtn.Size = new System.Drawing.Size(75, 75);
+            this.nextPlayerBtn.TabIndex = 15;
+            this.nextPlayerBtn.Text = "Next Player";
+            this.nextPlayerBtn.UseVisualStyleBackColor = false;
+            this.nextPlayerBtn.Visible = false;
+            this.nextPlayerBtn.Click += new System.EventHandler(this.nextPlayerBtn_Click);
             // 
             // checkedListBox1
             // 
@@ -258,7 +245,7 @@
             "High Straight.",
             "Four of a kind.",
             "YAHTZEE."});
-            this.checkedListBox2.Location = new System.Drawing.Point(640, 29);
+            this.checkedListBox2.Location = new System.Drawing.Point(644, 30);
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.Size = new System.Drawing.Size(142, 140);
             this.checkedListBox2.TabIndex = 17;
@@ -269,9 +256,9 @@
             this.currentPlayerLbl.AutoSize = true;
             this.currentPlayerLbl.Location = new System.Drawing.Point(15, 217);
             this.currentPlayerLbl.Name = "currentPlayerLbl";
-            this.currentPlayerLbl.Size = new System.Drawing.Size(79, 13);
+            this.currentPlayerLbl.Size = new System.Drawing.Size(85, 13);
             this.currentPlayerLbl.TabIndex = 18;
-            this.currentPlayerLbl.Text = "Current Player: ";
+            this.currentPlayerLbl.Text = "Current Player: 1";
             // 
             // mainForm
             // 
@@ -282,11 +269,10 @@
             this.Controls.Add(this.currentPlayerLbl);
             this.Controls.Add(this.checkedListBox2);
             this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.nextPlayerBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.scoredLabel);
-            this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.rollDiceBtn);
             this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.pictureBox9);
@@ -302,7 +288,6 @@
             this.MaximizeBox = false;
             this.Name = "mainForm";
             this.Text = "Yahtzee";
-
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -331,11 +316,10 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Button rollDiceBtn;
-        private System.Windows.Forms.Button resetBtn;
         private System.Windows.Forms.Label scoredLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button nextPlayerBtn;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.CheckedListBox checkedListBox2;
         private System.Windows.Forms.Label currentPlayerLbl;
